@@ -1,12 +1,14 @@
 const express = require("express");
 const bodyParser = require('body-parser');
+const ERRORS = require("./ERRORS.json");
 
 const PORT = process.env.PORT || 8080;
 
-module.exports = function (_recordManager) {
+module.exports = function (_analyticsManager) {
 
   let http;
   let app;
+  let analyticsManager = _analyticsManager;
 
   function main() {
     console.log("⚙️  Initializing HTTPServer");
@@ -27,37 +29,60 @@ module.exports = function (_recordManager) {
 
     app.use("/", express.static("./public"));
     registerEndPoints();
+  }
 
-    http.listen(PORT, function () {
-      console.log("✅ HTTPServer initialized on ", PORT);
+  this.listen = function () {
+    return new Promise(resolve => {
+      serverHandle = http.listen(PORT, function () {
+        console.log("✅ HTTPServer initialized on ", PORT);
+        resolve(serverHandle);
+      });
     });
   }
 
   function registerEndPoints() {
-    // app.post("/getData", handleGetData.bind(this));
+    app.get("/getSites", handleGetSites.bind(this));
+    app.post("/createSite", handleCreateSite.bind(this));
+
+    app.get("/getAnalyticsData", handleGetAnalyticsData.bind(this));
+    app.post("/addAnalyticsResult", handleAddAnalyticsResult.bind(this));
   }
 
-  // function handleGetData(req, res) {
-  //   recordManager.getData(req.body.startDate, req.body.endDate, req.body.minCount, req.body.maxCount)
-  //     .then((records) => {
+  function handleGetSites(req, res) {
+    analyticsManager.getSites().then(sites => {
+      res.send(sites);
+    }).catch(error => {
+      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(500).send(errorMsg);
+    });
+  }
 
-  //       res.send({
-  //         records,
-  //         code: RESPONSE_CODES.SUCCESS.code,
-  //         msg: RESPONSE_CODES.SUCCESS.msg
-  //       });
+  function handleCreateSite(req, res) {
+    analyticsManager.createSite(req.body.siteUrl).then(createdSiteId => {
+      res.send(createdSiteId);
+    }).catch(error => {
+      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_CREATE_SITE;
+      res.status(500).send(errorMsg);
+    });;
+  }
 
-  //     }).catch(error => {
+  function handleAddAnalyticsResult(req, res) {
+    analyticsManager.addAnalyticsResult(res.body.reportData).then(() => {
+      res.send("OK");
+    }).catch(error => {
+      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(500).send(errorMsg);
+    });
+  }
 
-  //       error = error || RESPONSE_CODES.UNKNOWN_ERROR;
-
-  //       res.send({
-  //         records: [],
-  //         code: error.code,
-  //         msg: error.msg
-  //       });
-  //     });
-  // }
+  function handleGetAnalyticsData(req, res) {
+    analyticsManager.getAnalyticsData(res.body.siteId, res.body.startTime, res.body.endTime).then(results => {
+      res.send(results);
+    }).catch(error => {
+      const errorMsg = ERRORS[error] || ERRORS.UNKNOWN_ERROR;
+      res.status(500).send(errorMsg);
+    });
+  }
 
   main();
 };

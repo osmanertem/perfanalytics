@@ -1,0 +1,20 @@
+{
+    "UNKNOWN_ERROR": {
+        "msg": "Unknown error"
+    },
+    "COULD_NOT_ADD_ANALYTICS_RESULT": {
+        "msg": "Could not add analytics result"
+    },
+    "COULD_NOT_CREATE_SITE": {
+        "msg": "Could not create site"
+    },
+    "COULD_NOT_GET_SITES_DATA": {
+        "msg": "Could not get sites data"
+    },
+    "INVALID_REQUEST_PARAMETERS": {
+        "msg": "Request parameters are not valid"
+    },
+    "DB_QUERY_FAILED": {
+        "msg": "DB Query Failed"
+    }
+}
