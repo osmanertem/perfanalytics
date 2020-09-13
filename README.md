@@ -92,9 +92,12 @@ Sequence Diagram for a analytics report request
 * Server.js unit tests may be written.
 * getAnalyticsData endpoint should support paging
 
-## Some Dashboard Screenshots
-SS1
+## Screenshots
+Loadtest
+![Dashboard](assets/loadtest.png?raw=true "Dashboard")
+
+Dashboard 1
 ![Dashboard](assets/dashboard-1.png?raw=true "Dashboard")
 
-SS2
+Dashboard 2
 ![Dashboard](assets/dashboard-2.png?raw=true "Dashboard")
