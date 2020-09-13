@@ -27,14 +27,11 @@ function createSite(siteUrl) {
 }
 
 function getAnalyticsData(siteId, startTime, endTime) {
-  console.log("startTime", startTime, new Date(startTime));
-  console.log("endTime", endTime, new Date(endTime));
-
   startTime = startTime || new Date(Date.now() - 30 * 60 * 1000).getTime();
   endTime = endTime || new Date().getTime();
 
-  console.log("startTime", startTime, new Date(startTime));
-  console.log("endTime", endTime, new Date(endTime));
+  // console.log("startTime", startTime, new Date(startTime));
+  // console.log("endTime", endTime, new Date(endTime));
 
   return SiteAnalytics.SiteAnalyticsModel.aggregate([
     { $match: { siteId } },

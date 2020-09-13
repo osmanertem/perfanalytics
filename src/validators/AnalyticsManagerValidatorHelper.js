@@ -34,7 +34,6 @@ function isValid_AddAnalyticsResult_Params(reportData) {
         resourceLoadTimes: reportData.resourceLoadTimes,
         url: reportData.url,
     });
-
     return error ? false : true;
 }
 

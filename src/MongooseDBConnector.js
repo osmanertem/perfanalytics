@@ -13,16 +13,16 @@ module.exports = function () {
 
   this.connectToDB = function () {
     return new Promise((resolve, reject) => {
-      console.log("⚙️  Connecting to MongoDB");
+      // console.log("⚙️  Connecting to MongoDB");
       mongoose.connect(DBURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
       const db = mongoose.connection;
       db.on('error', (error) => {
-        console.log("❌ Could not connec to MongoDB", error);
+        // console.log("❌ Could not connec to MongoDB", error);
         reject(error);
       });
       db.once('open', () => {
-        console.log("✅ Successfully connected to MongoDB");
+        // console.log("✅ Successfully connected to MongoDB");
         resolve()
       });
     });
@@ -31,10 +31,6 @@ module.exports = function () {
   this.disconnect = function () {
     mongoose.connection.close();
   };
-
-  function isConnected() {
-    return mongoose.connection && mongoose.connection.readyState === 1;
-  }
 
   main();
 };

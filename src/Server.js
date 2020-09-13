@@ -8,6 +8,7 @@ module.exports = function (_analyticsManager) {
 
   let http;
   let app;
+  let serverHandle;
   let analyticsManager = _analyticsManager;
 
   function main() {
@@ -63,7 +64,7 @@ module.exports = function (_analyticsManager) {
     }).catch(error => {
       const errorMsg = error || ERRORS.COULD_NOT_CREATE_SITE;
       res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
-    });;
+    });
   }
 
   function handleAddAnalyticsResult(req, res) {
