@@ -1,16 +1,36 @@
 <template>
   <b-row>
     <b-col sm="3" class="chart-container">
-      <PerformanceLineChart :height="200" :chartdata="ttfbChartData" :options="chartOptions" />
+      <PerformanceLineChart
+        id="ttfbChart"
+        :height="200"
+        :chartdata="ttfbChartData"
+        :options="chartOptions"
+      />
     </b-col>
     <b-col sm="3">
-      <PerformanceLineChart :height="200" :chartdata="fcpChartData" :options="chartOptions" />
+      <PerformanceLineChart
+        id="fcpChart"
+        :height="200"
+        :chartdata="fcpChartData"
+        :options="chartOptions"
+      />
     </b-col>
     <b-col sm="3">
-      <PerformanceLineChart :height="200" :chartdata="domLoadChartData" :options="chartOptions" />
+      <PerformanceLineChart
+        id="domLoadChart"
+        :height="200"
+        :chartdata="domLoadChartData"
+        :options="chartOptions"
+      />
     </b-col>
     <b-col sm="3">
-      <PerformanceLineChart :height="200" :chartdata="winLoadChartData" :options="chartOptions" />
+      <PerformanceLineChart
+        id="winLoadChart"
+        :height="200"
+        :chartdata="winLoadChartData"
+        :options="chartOptions"
+      />
     </b-col>
   </b-row>
 </template>

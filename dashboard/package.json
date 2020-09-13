@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve --skip-plugins @vue/cli-plugin-eslint",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:unit2": "nyc vue-cli-service test:unit src/components/**/*.{js,ts,vue} tests/**/*.spec.*",
+    "coverage": "nyc vue-cli-service test:unit src/components/**/*.{js,ts,vue} tests/**/*.spec.*",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
