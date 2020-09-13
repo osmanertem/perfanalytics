@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postinstall": "NODE_ENV=development && cd dashboard && npm run build && NODE_ENV=production",
-    "setup": "npm i && cd dashboard && npm i",
+    "postinstall": "cd dashboard && npm i && NODE_ENV=development && npm run build && NODE_ENV=production",
     "start": "node index.js",
     "start:dev:be": "node index.js",
     "start:dev:fe": "cd dashboard; npm run serve",
