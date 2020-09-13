@@ -59,7 +59,7 @@ export default {
     };
   },
   mounted() {
-    this.startTime = new Date(Date.now() - 300 * 30 * 60 * 1000);
+    this.startTime = new Date(Date.now() - 30 * 60 * 1000);
     this.endTime = new Date(Date.now());
     console.log('this.endTime', this.endTime);
     console.log('this.startTime', this.startTime);

@@ -46,7 +46,7 @@ describe("Analytics Manager", () => {
 
   test("analyticsManager::getSites -> can get sites data", () => {
     return analyticsManager.getSites().then(sites => {
-      expect(sites.length).toBeGreaterThan(1);
+      expect(sites.length).toBeGreaterThan(0);
     });
   });
   test("analyticsManager::createSite -> can create site", () => {

@@ -4,10 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "setup": "npm i && cd dashboard && npm i",
+    "start": "cd dashboard && npm run build && cd .. && node index.js",
+    "start:dev:be": "node index.js",
+    "start:dev:fe": "cd dashboard; npm run serve",
     "lint": "eslint ./src",
-    "test": "clear; jest --verbose",
-    "coverage": "clear; jest --verbose --coverage"
+    "test:be": "clear; jest --verbose",
+    "test:fe": "cd dashboard && npm run test:unit",
+    "coverage:be": "clear; jest --verbose --coverage",
+    "coverage:fe": "cd dashboard && npm run coverage"
   },
   "repository": {
     "type": "git",
@@ -41,7 +46,11 @@
   "jest": {
     "testEnvironment": "node",
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js"],
-    "modulePathIgnorePatterns": ["dashboard"]
-}
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "dashboard"
+    ]
+  }
 }
