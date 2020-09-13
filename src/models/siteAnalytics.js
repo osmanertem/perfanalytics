@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const AnalyticsData = require('./AnalyticsData');
+const AnalyticsData = require('./analyticsData');
 
 const SiteAnalyticsSchema = new mongoose.Schema({
   siteId: {
