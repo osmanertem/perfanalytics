@@ -1,0 +1,26 @@
+{
+    "UNKNOWN_ERROR": {
+        "httpStatusCode": 500,
+        "msg": "Unknown error"
+    },
+    "COULD_NOT_ADD_ANALYTICS_RESULT": {
+        "httpStatusCode": 500,
+        "msg": "Could not add analytics result"
+    },
+    "COULD_NOT_CREATE_SITE": {
+        "httpStatusCode": 500,
+        "msg": "Could not create site"
+    },
+    "COULD_NOT_GET_SITES_DATA": {
+        "httpStatusCode": 500,
+        "msg": "Could not get sites data"
+    },
+    "INVALID_REQUEST_PARAMETERS": {
+        "httpStatusCode": 422,
+        "msg": "Request parameters are not valid"
+    },
+    "DB_QUERY_FAILED": {
+        "httpStatusCode": 500,
+        "msg": "DB Query Failed"
+    }
+}

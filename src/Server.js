@@ -1,12 +1,15 @@
 const express = require("express");
 const bodyParser = require('body-parser');
+const ERRORS = require("./ERRORS.json");
 
 const PORT = process.env.PORT || 8080;
 
-module.exports = function (_recordManager) {
+module.exports = function (_analyticsManager) {
 
   let http;
   let app;
+  let serverHandle;
+  let analyticsManager = _analyticsManager;
 
   function main() {
     console.log("⚙️  Initializing HTTPServer");
@@ -27,37 +30,65 @@ module.exports = function (_recordManager) {
 
     app.use("/", express.static("./public"));
     registerEndPoints();
+  }
 
-    http.listen(PORT, function () {
-      console.log("✅ HTTPServer initialized on ", PORT);
+  this.listen = function () {
+    return new Promise(resolve => {
+      serverHandle = http.listen(PORT, function () {
+        console.log("✅ HTTPServer initialized on ", PORT);
+        resolve(serverHandle);
+      });
     });
   }
 
   function registerEndPoints() {
-    // app.post("/getData", handleGetData.bind(this));
+    app.get("/getSites", handleGetSites.bind(this));
+    app.post("/createSite", handleCreateSite.bind(this));
+
+    app.get("/getAnalyticsData", handleGetAnalyticsData.bind(this));
+    app.post("/addAnalyticsResult", handleAddAnalyticsResult.bind(this));
   }
 
-  // function handleGetData(req, res) {
-  //   recordManager.getData(req.body.startDate, req.body.endDate, req.body.minCount, req.body.maxCount)
-  //     .then((records) => {
+  function handleGetSites(req, res) {
+    analyticsManager.getSites().then(sites => {
+      res.send(sites);
+    }).catch(error => {
+      const errorMsg = error || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
+    });
+  }
 
-  //       res.send({
-  //         records,
-  //         code: RESPONSE_CODES.SUCCESS.code,
-  //         msg: RESPONSE_CODES.SUCCESS.msg
-  //       });
+  function handleCreateSite(req, res) {
+    analyticsManager.createSite(req.body.siteUrl).then(createdSiteId => {
+      res.send(createdSiteId);
+    }).catch(error => {
+      const errorMsg = error || ERRORS.COULD_NOT_CREATE_SITE;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
+    });
+  }
 
-  //     }).catch(error => {
+  function handleAddAnalyticsResult(req, res) {
+    const reporterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    analyticsManager.addAnalyticsResult(req.body.reportData, reporterIp).then(() => {
+      res.send({ result: "OK" });
+    }).catch(error => {
+      const errorMsg = error || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
+    });
+  }
 
-  //       error = error || RESPONSE_CODES.UNKNOWN_ERROR;
+  function handleGetAnalyticsData(req, res) {
+    let t0 = new Date();
+    analyticsManager.getAnalyticsData(req.query.siteId, req.query.startTime, req.query.endTime).then(results => {
+      const calculationDuration = (Date.now() - t0.getTime());
+      console.log("Analytics calculation duration " + calculationDuration + " ms");
 
-  //       res.send({
-  //         records: [],
-  //         code: error.code,
-  //         msg: error.msg
-  //       });
-  //     });
-  // }
+      res.send(results);
+    }).catch(error => {
+      const errorMsg = error || ERRORS.UNKNOWN_ERROR;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
+    });
+  }
 
   main();
 };

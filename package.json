@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "NODE_ENV=development && cd dashboard && npm i && NODE_ENV=production && npm run build",
+    "start": "node index.js",
+    "start:dev:be": "node index.js",
+    "start:dev:fe": "cd dashboard; npm run serve",
+    "lint": "eslint ./src",
+    "test:be": "clear; jest --verbose",
+    "test:fe": "cd dashboard && npm run test:unit",
+    "coverage:be": "clear; jest --verbose --coverage",
+    "coverage:fe": "cd dashboard && npm run coverage"
   },
   "repository": {
     "type": "git",
@@ -21,6 +29,22 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^17.2.1",
-    "mongoose": "^5.10.4"
+    "mongoose": "^5.10.4",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "dashboard"
+    ]
   }
 }
