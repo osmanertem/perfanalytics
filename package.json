@@ -37,12 +37,6 @@
     "husky": "^4.3.0",
     "jest": "^26.4.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
-  },
   "jest": {
     "testEnvironment": "node",
     "collectCoverage": true,
