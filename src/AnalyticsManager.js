@@ -22,7 +22,7 @@ module.exports = function () {
   };
 
   this.addAnalyticsResult = function (reportData, reporterIp) {
-    const reportDataObj = { reportData, reporterIp };
+    const reportDataObj = { ...reportData, reporterIp };
     if (!validators.isValid_AddAnalyticsResult_Params(reportDataObj)) {
       return Promise.reject(ERRORS.INVALID_REQUEST_PARAMETERS)
     }
