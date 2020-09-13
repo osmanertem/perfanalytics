@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "NODE_ENV=development && cd dashboard && npm i && npm run build && NODE_ENV=production",
+    "postinstall": "NODE_ENV=development && cd dashboard && npm i && NODE_ENV=production && npm run build",
     "start": "node index.js",
     "start:dev:be": "node index.js",
     "start:dev:fe": "cd dashboard; npm run serve",
