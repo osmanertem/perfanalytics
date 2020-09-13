@@ -20,17 +20,19 @@ function isValid_AddAnalyticsResult_Params(reportData) {
         domLoad: Joi.number().required(),
         windowLoad: Joi.number().required(),
         resourceLoadTimes: Joi.array().min(1),
-        siteUrl: Joi.string().uri().required(),
+        origin: Joi.string().uri().required(),
+        url: Joi.string().uri().required(),
     });
 
     const { error } = schema.validate({
         FCP: reportData.FCP,
         TTFB: reportData.TTFB,
         siteId: reportData.siteId,
-        siteUrl: reportData.siteUrl,
+        origin: reportData.origin,
         domLoad: reportData.domLoad,
         windowLoad: reportData.windowLoad,
         resourceLoadTimes: reportData.resourceLoadTimes,
+        url: reportData.url,
     });
 
     return error ? false : true;
@@ -39,8 +41,8 @@ function isValid_AddAnalyticsResult_Params(reportData) {
 function isValid_GetAnalyticsData_Params(siteId, startTime, endTime) {
     const schema = Joi.object().keys({
         siteId: Joi.string().required(),
-        startTime: Joi.date().required(),
-        endTime: Joi.date().greater(Joi.ref('startTime')).required(),
+        startTime: Joi.date(),
+        endTime: Joi.date().greater(Joi.ref('startTime')),
     });
 
     const { error } = schema.validate({

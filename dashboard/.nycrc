@@ -1,0 +1,13 @@
+{
+  "extension": [
+    ".js",
+    ".ts",
+    ".vue"
+  ],
+  "include": [
+    "src/**/*.{js,ts,vue}"
+  ],
+  "exclude": ["**/*.spec.*"],
+  "instrument": false,
+  "sourceMap": false
+}

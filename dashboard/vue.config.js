@@ -1,6 +1,6 @@
 module.exports = {
-  outputDir: "../public/dashboard",
+  outputDir: '../public/dashboard',
   publicPath: process.env.NODE_ENV === 'production'
     ? '/dashboard/'
-    : '/'
+    : '/',
 };

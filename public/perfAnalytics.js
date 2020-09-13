@@ -1,12 +1,12 @@
-function PerfAnalytics(_websiteId) {
+function PerfAnalytics(_siteId) {
 
-  let webSiteId = _websiteId;
+  let siteId = _siteId;
 
   function main() {
     window.addEventListener("load", onWindowLoadedHandler)
-    
+    console.log("initializin perf analytics");
     // TODO: remove
-    setTimeout(onWindowLoadedHandler, 1000);
+    // setTimeout(onWindowLoadedHandler, 1000);
   }
 
   function onWindowLoadedHandler() {
@@ -35,7 +35,15 @@ function PerfAnalytics(_websiteId) {
   }
 
   function reportPerformanceMetrics(performanceMetrics) {
-    console.log("reporting metrics", webSiteId, performanceMetrics);
+    // TODO: post results to the server
+    window.analyticData = {
+      ...performanceMetrics,
+      siteId,
+      origin: window.location.origin,
+      url: window.location.href,
+    };
+    console.log(JSON.stringify(window.analyticData));
+    console.log("7");
   }
 
   function getTTFB(performance) {
@@ -70,8 +78,8 @@ function PerfAnalytics(_websiteId) {
   main();
 }
 
-function initPerfAnalytics(websiteId) {
-  let perf = new PerfAnalytics(websiteId);
+function initPerfAnalytics(siteId) {
+  let perf = new PerfAnalytics(siteId);
 }
 
-initPerfAnalytics("MySite1");
+initPerfAnalytics("2a6f0fa8-a05d-4751-b622-64a38983b473");

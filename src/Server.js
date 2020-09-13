@@ -52,8 +52,8 @@ module.exports = function (_analyticsManager) {
     analyticsManager.getSites().then(sites => {
       res.send(sites);
     }).catch(error => {
-      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
-      res.status(500).send(errorMsg);
+      const errorMsg = error || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
     });
   }
 
@@ -61,26 +61,31 @@ module.exports = function (_analyticsManager) {
     analyticsManager.createSite(req.body.siteUrl).then(createdSiteId => {
       res.send(createdSiteId);
     }).catch(error => {
-      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_CREATE_SITE;
-      res.status(500).send(errorMsg);
+      const errorMsg = error || ERRORS.COULD_NOT_CREATE_SITE;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
     });;
   }
 
   function handleAddAnalyticsResult(req, res) {
-    analyticsManager.addAnalyticsResult(res.body.reportData).then(() => {
-      res.send("OK");
+    const reporterIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    analyticsManager.addAnalyticsResult(req.body.reportData, reporterIp).then(() => {
+      res.send({ result: "OK" });
     }).catch(error => {
-      const errorMsg = ERRORS[error] || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
-      res.status(500).send(errorMsg);
+      const errorMsg = error || ERRORS.COULD_NOT_ADD_ANALYTICS_RESULT;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
     });
   }
 
   function handleGetAnalyticsData(req, res) {
-    analyticsManager.getAnalyticsData(res.body.siteId, res.body.startTime, res.body.endTime).then(results => {
+    let t0 = new Date();
+    analyticsManager.getAnalyticsData(req.query.siteId, req.query.startTime, req.query.endTime).then(results => {
+      const calculationDuration = (Date.now() - t0.getTime());
+      console.log("Analytics calculation duration " + calculationDuration + " ms");
+
       res.send(results);
     }).catch(error => {
-      const errorMsg = ERRORS[error] || ERRORS.UNKNOWN_ERROR;
-      res.status(500).send(errorMsg);
+      const errorMsg = error || ERRORS.UNKNOWN_ERROR;
+      res.status(errorMsg.httpStatusCode || 500).send(errorMsg);
     });
   }
 
