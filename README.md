@@ -6,7 +6,7 @@ Dashboard URL : https:// herokuuiiasdasd/dashboard
 
 ## Project setup
 ```
-npm run setup
+npm run install
 ```
 
 ## How to run

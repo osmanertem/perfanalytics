@@ -82,4 +82,4 @@ function initPerfAnalytics(siteId) {
   let perf = new PerfAnalytics(siteId);
 }
 
-initPerfAnalytics("2a6f0fa8-a05d-4751-b622-64a38983b473");
+// initPerfAnalytics("2a6f0fa8-a05d-4751-b622-64a38983b473");

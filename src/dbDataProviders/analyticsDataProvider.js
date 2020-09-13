@@ -2,7 +2,7 @@
  * Mongoose specific implementation is done in this class
  */
 const { v4: getUUID } = require("uuid");
-const Website = require("../models/Website");
+const Website = require("../models/website");
 const SiteAnalytics = require("../models/siteAnalytics");
 
 function getSites() {

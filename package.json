@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "npm i && cd dashboard && npm i",
-    "start": "cd dashboard && npm run build && cd .. && node index.js",
+    "postinstall": "NODE_ENV=development && cd dashboard && npm i && NODE_ENV=production && npm run build",
+    "start": "node index.js",
     "start:dev:be": "node index.js",
     "start:dev:fe": "cd dashboard; npm run serve",
     "lint": "eslint ./src",
@@ -36,12 +36,6 @@
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
     "jest": "^26.4.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
   },
   "jest": {
     "testEnvironment": "node",
