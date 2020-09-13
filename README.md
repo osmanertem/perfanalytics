@@ -2,7 +2,7 @@
 
 PerfAnalytics is an ecosystem which collectes and criticizes web performance data.
 
-Dashboard URL : https:// herokuuiiasdasd/dashboard
+Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
 
 ## Project setup
 ```
@@ -37,14 +37,11 @@ npm run start:dev:fe;
 * Set the siteId to perfAnalyticSiteId variable below
 
 ```html
-<script async src="https://XXXXXXXXXX"></script>
-
-<!-- Initialize -->
+<script async src="https://osmanertem-perf-analytics.herokuapp.com/perfAnalytics.js"></script>
 <script>
     const perfAnalyticSiteId = "uuid"; 
     initPerfAnalytics(perfAnalyticSiteId);
 </script>
-
 ```
 
 # Design
@@ -93,6 +90,7 @@ Sequence Diagram for a analytics report request
 * Unit tests should be improved on FE side.
 * e2e test should be implemented on FE side.
 * Server.js unit tests may be written.
+* getAnalyticsData endpoint should support paging
 
 ## Some Dashboard Screenshots
 SS1

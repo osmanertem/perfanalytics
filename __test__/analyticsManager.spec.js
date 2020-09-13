@@ -49,12 +49,14 @@ describe("Analytics Manager", () => {
       expect(sites.length).toBeGreaterThan(0);
     });
   });
+  
   test("analyticsManager::createSite -> can create site", () => {
     return analyticsManager.createSite(validTestSiteUrl).then(createdSiteData => {
       newTestSiteId = createdSiteData.siteId;
       expect(createdSiteData.siteUrl).toEqual(validTestSiteUrl);
     });
   });
+
   test("analyticsManager::createSite -> can not create site with invalid url", () => {
     return analyticsManager.createSite(invalidTestSiteUrl).then(() => {
       throw new Error("This promise needs to throw exception");
@@ -62,6 +64,7 @@ describe("Analytics Manager", () => {
       return expect(error.httpStatusCode).toEqual(ERRORS.INVALID_REQUEST_PARAMETERS.httpStatusCode);
     });
   });
+
   test("analyticsManager::getAnalyticsData -> can get trendyol analytics data", () => {
     return analyticsManager.getAnalyticsData(
       "2a6f0fa8-a05d-4751-b622-64a38983b473",
@@ -71,6 +74,7 @@ describe("Analytics Manager", () => {
       return expect(analyticsDataResults.length).toBeGreaterThan(1);
     });
   });
+
   test("analyticsManager::getAnalyticsData -> can detect invalid parameters (startDate cannot be greater than end date)", () => {
     return analyticsManager.getAnalyticsData(
       "2a6f0fa8-a05d-4751-b622-64a38983b473",
@@ -85,7 +89,7 @@ describe("Analytics Manager", () => {
 
   test("analyticsManager::addAnalyticsResult -> can add new analytics result", () => {
     exampleAnalyticsData.siteId = newTestSiteId;
-    return analyticsManager.addAnalyticsResult(JSON.stringify(exampleAnalyticsData), "test.computer.com").then(result => {
+    return analyticsManager.addAnalyticsResult(exampleAnalyticsData, "test.computer.com").then(result => {
       expect(result._id).not.toEqual(undefined);
     });
   });
@@ -98,7 +102,4 @@ describe("Analytics Manager", () => {
       return expect(error.httpStatusCode).toEqual(ERRORS.INVALID_REQUEST_PARAMETERS.httpStatusCode);
     });
   });
-
-
-
 });

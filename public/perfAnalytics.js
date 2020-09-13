@@ -4,9 +4,6 @@ function PerfAnalytics(_siteId) {
 
   function main() {
     window.addEventListener("load", onWindowLoadedHandler)
-    console.log("initializin perf analytics");
-    // TODO: remove
-    // setTimeout(onWindowLoadedHandler, 1000);
   }
 
   function onWindowLoadedHandler() {
@@ -24,26 +21,26 @@ function PerfAnalytics(_siteId) {
     const domLoad = getDomLoad(performance);
     const windowLoad = getWindowLoad(performance);
     const resourceLoadTimes = getResourceLoadTimes(performance);
-
-    console.log("FCP", FCP);
-    console.log("TTFB", TTFB);
-    console.log("domLoad", domLoad);
-    console.log("windowLoad", windowLoad);
-    console.log("resourceLoadTimes", resourceLoadTimes);
-
     return { FCP, TTFB, domLoad, windowLoad, resourceLoadTimes };
   }
 
   function reportPerformanceMetrics(performanceMetrics) {
-    // TODO: post results to the server
     window.analyticData = {
       ...performanceMetrics,
       siteId,
       origin: window.location.origin,
       url: window.location.href,
     };
-    console.log(JSON.stringify(window.analyticData));
-    console.log("7");
+
+    fetch('https://osmanertem-perf-analytics.herokuapp.com/addAnalyticsResult', {
+      method: 'POST',
+      body: JSON.stringify({ reportData: window.analyticData }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log("Could not send analytics to server", error);
+      });
   }
 
   function getTTFB(performance) {
@@ -81,5 +78,3 @@ function PerfAnalytics(_siteId) {
 function initPerfAnalytics(siteId) {
   let perf = new PerfAnalytics(siteId);
 }
-
-// initPerfAnalytics("2a6f0fa8-a05d-4751-b622-64a38983b473");

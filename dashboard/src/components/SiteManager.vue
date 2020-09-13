@@ -69,7 +69,7 @@ export default {
   props: ['siteId'],
   data() {
     return {
-      newSiteUrl: 'https://www.trendyol.com9',
+      newSiteUrl: '',
       selected: null,
     };
   },
