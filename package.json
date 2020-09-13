@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postinstall": "cd dashboard && npm run build",
     "setup": "npm i && cd dashboard && npm i",
-    "start": "cd dashboard && npm run build && cd .. && node index.js",
+    "start": "node index.js",
     "start:dev:be": "node index.js",
     "start:dev:fe": "cd dashboard; npm run serve",
     "lint": "eslint ./src",
