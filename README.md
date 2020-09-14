@@ -5,6 +5,20 @@ PerfAnalytics is an ecosystem which collectes and criticizes web performance dat
 
 Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
 
+## Table of contents
+<!--ts-->
+   * [Project setup](#project-setup)
+   * [How to run](#how-to-run)
+   * [How to use](#how-to-use)
+   * [Design](#design)
+      * [FE implementaion](#fe-implementation)
+      * [BE implementation](#be-implementation)
+          * [Notes about classes](#notes-about-classes)
+      * [CI / CD](#ci-/-cd)
+      * [Possible Improvements in Future](#possible-improvements-in-future)
+  * [Screenshots](#screenshots)
+<!--te-->
+
 ## Project setup
 ```
 npm run install
@@ -45,8 +59,8 @@ npm run start:dev:fe;
 </script>
 ```
 
-# Design
-## FE implementaion
+## Design
+### FE implementaion
 * Implementation on FE side is done with **Vue** and **Vuex**.
 * Each component is designed to be reusable. They are not tightly coupled. Communication between components are done with events & props.
 * sdk.js is designed to manage the communication with BE. If communication protocol changes in feature (like moving to webSocket) only sdk.js will be effected. The rest of the implementation will remain same.
@@ -56,7 +70,7 @@ npm run start:dev:fe;
 Component Structure of PerfAnalytics Dashboard
 ![Component Structure of PerfAnalytics Dashboard](assets/ui-component-structure.png?raw=true "Component Structure of PerfAnalytics Dashboard")
 
-## BE implementation
+### BE implementation
 * MongoDB atlas service is used
 * BE architecture is designed to be able to support future requests.
 * BE Software is split into different layers and these layers loosely coupled.
@@ -67,7 +81,7 @@ Component Structure of PerfAnalytics Dashboard
 Sequence Diagram for a analytics report request
 ![Sequence Diagram for a analytics report request](assets/sequence-diagram-for-analytics.report.png?raw=true "Sequence Diagram for a analytics report request")
 
-### Notes about classes
+#### Notes about classes
 * `Server.js`
   * This class is responsible for receiving HTTP requests and answering them with the data provided from Bussiness Logic classes (currently AnalyticsManager)
   * All Server related implementations are done only in this class.
@@ -85,15 +99,22 @@ Sequence Diagram for a analytics report request
   * This helper class holds the validator configurations for objects used in the project.
   * It is implemented as a helper to let it be used by various classes in future.
 
-## Possible Improvements in Future
+### CI / CD
+* Automated deployment is configured on heroku dashboard
+* Github Actions is configured to work on every push
+* Automated deployment is configured to wait a successful github actions workflow result.
+
+
+### Possible Improvements in Future
 * Dashboard tables should support sorting, searching, paging.
 * Mechanisms should be developed to validate genuineness of the reported data.
 * Unit tests should be improved on FE side.
 * e2e test should be implemented on FE side.
 * Server.js unit tests may be written.
 * getAnalyticsData endpoint should support paging
+* Perfanaltytics.JS may be minified. It is currently 2.448 bytes
 
-## Screenshots
+# Screenshots
 Loadtest
 ![Dashboard](assets/loadtest.png?raw=true "Dashboard")
 
