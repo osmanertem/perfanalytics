@@ -116,6 +116,7 @@ Sequence Diagram for a analytics report request
 
 # Screenshots
 Loadtest
+
 ![Dashboard](assets/loadtest.png?raw=true "Dashboard")
 
 Dashboard 1
