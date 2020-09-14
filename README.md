@@ -17,6 +17,7 @@ npm run start;
 npm run lint;
 
 # unit tests
+npm run test # all, be and fe tests
 npm run test:be;
 npm run test:fe;
 
@@ -27,7 +28,6 @@ npm run coverage:fe;
 # development mode FE and BE projects separately
 npm run start:dev:be; 
 npm run start:dev:fe;
-
 ```
 
 ## How to use
