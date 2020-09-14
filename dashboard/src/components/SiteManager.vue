@@ -2,7 +2,7 @@
   <b-row class="site-manager">
     <b-col>
       <b-row style="margin-top:10px">
-        <b-col class="page-title">Performance Analytics Dashboard</b-col>
+        <b-col class="page-title">Performance Analytics Dashboard 1</b-col>
       </b-row>
       <b-row align-v="center" align-h="center">
         <b-col cols="2">Select Site:</b-col>
