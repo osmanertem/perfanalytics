@@ -1,5 +1,5 @@
 # PerfAnalytics
-
+![Node.js CI](https://github.com/osmanertem/perfanalytics/workflows/Node.js%20CI/badge.svg?branch=master)
 PerfAnalytics is an ecosystem which collectes and criticizes web performance data.
 
 Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
