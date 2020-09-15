@@ -74,7 +74,5 @@ function PerfAnalytics(_siteId) {
 
   main();
 }
-
-function initPerfAnalytics(siteId) {
-  let perf = new PerfAnalytics(siteId);
-}
+// perfAnalyticSiteId variable must be defined by the user
+let perf = new PerfAnalytics(perfAnalyticSiteId);
