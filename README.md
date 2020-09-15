@@ -5,6 +5,10 @@ PerfAnalytics is an ecosystem which collectes and criticizes web performance dat
 
 Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
 
+**Note 1:** Since Heroku sends idle apps to sleeping state, it may take couple of seconds app get up and running.
+
+**Note 2:** An example data set is added for demo purposes. If you set StartTime to 13.09.2020 08.00 and EndTime 15.09.2020 08.00 you can see demo data on charts and tables. 
+
 ## Table of contents
 <!--ts-->
    * [Project setup](#project-setup)
@@ -20,8 +24,17 @@ Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
 <!--te-->
 
 ## Project setup
+
+Crete .env file at root and fill following variables.
 ```
-npm run install
+DB_USER_NAME=''
+DB_PASSWORD=''
+DB_SERVER=''
+DB_NAME=''
+```
+
+```
+npm install
 ```
 
 ## How to run
@@ -34,7 +47,7 @@ npm run lint;
 # unit tests
 npm run test # all, be and fe tests
 npm run test:be;
-npm run test:fe;
+npm run test:fe; # vue.js dev mode
 
 # test coverage reports
 npm run coverage:be;

@@ -1,4 +1,6 @@
-const SERVER_URL = 'https://osmanertem-perf-analytics.herokuapp.com/';
+const SERVER_URL = process.env.NODE_ENV === 'production'
+  ? 'https://osmanertem-perf-analytics.herokuapp.com/'
+  : 'http://localhost:8080/';
 
 function getSites() {
   return fetch(`${SERVER_URL}getSites`, {
