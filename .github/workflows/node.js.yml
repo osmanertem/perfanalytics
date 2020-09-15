@@ -32,11 +32,11 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_SERVER: ${{ secrets.DB_SERVER }}
         DB_NAME: ${{ secrets.DB_NAME }}
-      run: npm test:be
+      run: npm run test:be
     - name: Run FE tests
       env:
         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_SERVER: ${{ secrets.DB_SERVER }}
         DB_NAME: ${{ secrets.DB_NAME }}
-      run: npm test:fe
+      run: npm run test:fe
