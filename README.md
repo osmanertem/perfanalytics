@@ -15,9 +15,10 @@ Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
    * [How to run](#how-to-run)
    * [How to use](#how-to-use)
    * [Design](#design)
-      * [FE implementaion](#fe-implementation)
+      * [FE implementaion (Dashboard)](#fe-implementation)
       * [BE implementation](#be-implementation)
           * [Notes about classes](#notes-about-classes)
+      * [PerfAnalytics.JS](#perf-analytics--js)
       * [CI / CD](#ci--cd)
       * [Possible Improvements in Future](#possible-improvements-in-future)
   * [Screenshots](#screenshots)
@@ -65,15 +66,14 @@ npm run start:dev:fe;
 * Set the siteId to perfAnalyticSiteId variable below
 
 ```html
-<script async src="https://osmanertem-perf-analytics.herokuapp.com/perfAnalytics.js"></script>
 <script>
-    const perfAnalyticSiteId = "uuid"; 
-    initPerfAnalytics(perfAnalyticSiteId);
+  const perfAnalyticSiteId = "uuid";
 </script>
+<script async src="https://osmanertem-perf-analytics.herokuapp.com/perfAnalytics.js"></script>
 ```
 
 ## Design
-### FE implementaion
+### FE implementaion (Dashboard)
 * Implementation on FE side is done with **Vue** and **Vuex**.
 * Each component is designed to be reusable. They are not tightly coupled. Communication between components are done with events & props.
 * sdk.js is designed to manage the communication with BE. If communication protocol changes in feature (like moving to webSocket) only sdk.js will be effected. The rest of the implementation will remain same.
@@ -112,11 +112,27 @@ Sequence Diagram for a analytics report request
   * This helper class holds the validator configurations for objects used in the project.
   * It is implemented as a helper to let it be used by various classes in future.
 
+### PerfAnalytics.JS
+* PerfAnalytics.JS is located under /public folder
+* Before including the script, **perfAnalyticSiteId** variable must be defined.
+```html
+<script>
+  const perfAnalyticSiteId = "uuid";
+</script>
+```
+* It should be included in host page with following code
+```html
+<script async src="https://osmanertem-perf-analytics.herokuapp.com/perfAnalytics.js"></script>
+```
+* Script tag should include "async" attribute in order not to harm page load time.
+* The script registers to window.load event.
+* Then it collects the data from window.performance
+* It sends the collected data to PerfAnalytics api with an async fetch requests. 
+
 ### CI / CD
 * Automated deployment is configured on heroku dashboard
 * Github Actions is configured to work on every push
 * Automated deployment is configured to wait a successful github actions workflow result.
-
 
 ### Possible Improvements in Future
 * Dashboard tables should support sorting, searching, paging.
