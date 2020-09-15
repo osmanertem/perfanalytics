@@ -18,7 +18,7 @@ Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
       * [FE implementaion (Dashboard)](#fe-implementation)
       * [BE implementation](#be-implementation)
           * [Notes about classes](#notes-about-classes)
-      * [PerfAnalytics.JS](#perf-analytics--js)
+      * [PerfAnalytics.JS](#perfanalyticsjs)
       * [CI / CD](#ci--cd)
       * [Possible Improvements in Future](#possible-improvements-in-future)
   * [Screenshots](#screenshots)
