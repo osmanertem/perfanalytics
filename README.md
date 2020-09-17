@@ -5,7 +5,7 @@ PerfAnalytics is an ecosystem which collectes and criticizes web performance dat
 
 Dashboard URL : https://osmanertem-perf-analytics.herokuapp.com/dashboard/#/
 
-**Note 1:** Since Heroku sends idle apps to sleeping state, it may take couple of seconds app get up and running.
+**Note 1:** Since Heroku sends idle apps to sleeping state, it may take couple of seconds app to get up and running.
 
 **Note 2:** An example data set is added for demo purposes. If you set StartTime to 13.09.2020 08.00 and EndTime 15.09.2020 08.00 you can see demo data on charts and tables. 
 
