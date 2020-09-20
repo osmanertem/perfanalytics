@@ -1,5 +1,5 @@
 # PerfAnalytics
-![Node.js CI](https://github.com/osmanertem/perfanalytics/workflows/Node.js%20CI/badge.svg?branch=master)
+![Node.js CI](https://github.com/osmanertem/perfanalytics/workflows/Node.js%20CI/badge.svg?branch=master) ![Docker Build and Publish](https://github.com/osmanertem/perfanalytics/workflows/Docker%20Build%20and%20Publish/badge.svg)
 
 PerfAnalytics is an ecosystem which collectes and criticizes web performance data.
 
@@ -57,6 +57,10 @@ npm run coverage:fe;
 # development mode FE and BE projects separately
 npm run start:dev:be; 
 npm run start:dev:fe;
+
+# run with docker
+docker pull osmanertem/perfanalytics
+docker run -p 44444:8080 -e DB_USER_NAME=XXXX -e DB_PASSWORD=XXXXX -e DB_SERVER=XXXXX -e DB_NAME=XXXX -d osmanertem/perfanalytics
 ```
 
 ## How to use
