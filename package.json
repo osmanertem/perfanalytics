@@ -9,7 +9,7 @@
     "start:dev:be": "node index.js",
     "start:dev:fe": "cd dashboard && npm run serve",
     "lint": "eslint ./src",
-    "test" : "jest --verbose && cd dashboard && npm run test:unit",
+    "test": "jest --verbose && cd dashboard && npm run test:unit",
     "test:be": "clear; jest --verbose",
     "test:fe": "cd dashboard && npm run test:unit",
     "coverage:be": "clear; jest --verbose --coverage",
