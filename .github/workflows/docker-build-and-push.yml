@@ -19,7 +19,7 @@ jobs:
       
       - name: docker build
         run: |
-          docker build -t osmanertem/perfanalytics .
+          docker build . -t osmanertem/perfanalytics
       
       - name: docker push
         run: |
