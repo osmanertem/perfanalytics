@@ -1,4 +1,4 @@
-# PerfAnalytics
+# Trendyol Job Interview Case Study: PerfAnalytics
 ![Node.js CI](https://github.com/osmanertem/perfanalytics/workflows/Node.js%20CI/badge.svg?branch=master) ![Docker Build and Publish](https://github.com/osmanertem/perfanalytics/workflows/Docker%20Build%20and%20Publish/badge.svg)
 
 PerfAnalytics is an ecosystem which collectes and criticizes web performance data.
